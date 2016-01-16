@@ -4,39 +4,46 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float speed;
-
     private Rigidbody rb;
+    private Vector3 movement;
 
     public bool jumpValue = true;
+    public float speed;
+    public float jumpForce;
+
+    public string horizontalControl = "Horizontal_P1";
+    public string verticalControl = "Vertical_P1";
+    public string jumpControl = "Jump_P1";
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void OnCollisionEnter(Collision Collision)
+    void OnCollisionEnter(Collision collision)
     {
-        jumpValue = true;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            jumpValue = true;
+        }
     }
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis(horizontalControl);
+        float moveVertical = Input.GetAxis(verticalControl) * -1;
 
-        Vector3 movement;
-        
-        if (Input.GetKeyDown(KeyCode.Space) && jumpValue == true)
+        if (Input.GetButtonDown(jumpControl) && jumpValue == true)
         {
-            movement = new Vector3(moveHorizontal, 10.0f, moveVertical);
+            movement = new Vector3(moveHorizontal, jumpForce, moveVertical);
             jumpValue = false;
         }
         else
         {
             movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         }
+
         rb.AddForce(movement * speed);
     }
 }
