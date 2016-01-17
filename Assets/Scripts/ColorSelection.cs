@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 public class ColorSelection : MonoBehaviour
-{	
+{
 
 	public Color[] colors;
 	public List<Color> colorsLeft = new List<Color>();
@@ -22,7 +22,7 @@ public class ColorSelection : MonoBehaviour
 		colorsLeft.Add(Color.white);
         colorsLeft.Add(Color.black);
 		createTiles();
-	}
+    }
 
     void Update()
     {
@@ -36,7 +36,24 @@ public class ColorSelection : MonoBehaviour
             if (timeLeft >= restTime - 0.35f && timeLeft <= restTime - 0.25f)
             {
                 fall();
+                if (GameObject.Find("player1").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player1").GetComponent<PlayerController>().incrementScore();
+                }
+                if (GameObject.Find("player2").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player2").GetComponent<PlayerController>().incrementScore();
+                }
+                if (GameObject.Find("player3").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player3").GetComponent<PlayerController>().incrementScore();
+                }
+                if (GameObject.Find("player4").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player4").GetComponent<PlayerController>().incrementScore();
+                }
             }
+            
         }
     }
 
@@ -60,7 +77,8 @@ public class ColorSelection : MonoBehaviour
 				tile.GetComponent<Rigidbody>().isKinematic = false;
 			}
 		}
-	}
+        
+    }
 
 	void createTiles()
 	{
