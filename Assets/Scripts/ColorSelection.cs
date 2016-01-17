@@ -49,6 +49,23 @@ public class ColorSelection : MonoBehaviour
             if (timeLeft >= restTime - 0.45f && timeLeft <= restTime - 0.35f)
             {
                 fall();
+
+                if (GameObject.Find("player1").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player1").GetComponent<PlayerController>().incrementScore();
+                }
+                if (GameObject.Find("player2").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player2").GetComponent<PlayerController>().incrementScore();
+                }
+                if (GameObject.Find("player3").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player3").GetComponent<PlayerController>().incrementScore();
+                }
+                if (GameObject.Find("player4").GetComponent<PlayerController>().checkAlive() == true)
+                {
+                    GameObject.Find("player4").GetComponent<PlayerController>().incrementScore();
+                }
             }
 
             if (powerUpTime >= powerUpFrequency + Random.Range(-1f, 1f))

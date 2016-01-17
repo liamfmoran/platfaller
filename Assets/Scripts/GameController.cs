@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -72,12 +73,16 @@ public class GameController : MonoBehaviour {
                 Debug.Log("Player 4 created");
             }
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene("Minigame");
+        }
     }
 
     public void StartGame()
     {
         gameStart = true;
-
         if (player1 != null)
         {
             GameObject.Find("player1").GetComponent<AudioSource>().Play();

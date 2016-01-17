@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 movement;
 
+    public bool alive;
     public bool canJump = true;
     public float speed;
     public float jumpForce;
-    public bool alive;
+
+    public int score = 0;
 
     public int powerCode;
 
@@ -82,6 +84,27 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.AddForce(movement * speed);
+
+        if (transform.position.y < -0.5)
+        {
+            alive = false;
+        }
+    }
+
+    public bool checkAlive()
+    {
+        return alive;
+    }
+
+    public void incrementScore()
+    {
+        score = score + 1;
+        print(score);
+    }
+
+    public int retrieveScore()
+    {
+        return score;
     }
 
     void PowerForcePush()
