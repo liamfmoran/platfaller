@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 movement;
 
-    public bool jumpValue = true;
+    public bool canJump = true;
     public float speed;
     public float jumpForce;
+    public bool alive;
 
     public string horizontalControl = "Horizontal_P1";
     public string verticalControl = "Vertical_P1";
@@ -18,15 +19,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        alive = true;
         rb = GetComponent<Rigidbody>();
 
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && gameObject.transform.position.y > 0)
         {
-            jumpValue = true;
+            canJump = true;
         }
     }
 
@@ -35,10 +37,19 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis(horizontalControl);
         float moveVertical = Input.GetAxis(verticalControl) * -1;
 
-        if (Input.GetButtonDown(jumpControl) && jumpValue == true)
+        if (!canJump)
+        {
+            speed = 12;
+        }
+        else
+        {
+            speed = 20;
+        }
+
+        if (Input.GetButtonDown(jumpControl) && canJump)
         {
             movement = new Vector3(moveHorizontal, jumpForce, moveVertical);
-            jumpValue = false;
+            canJump = false;
         }
         else
         {

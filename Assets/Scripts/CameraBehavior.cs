@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CameraBehavior : MonoBehaviour
 {
 
-	public GameObject player1;
-	public GameObject player2;
-    public GameObject player3;
-    public GameObject player4;
+    List<GameObject> players;
 
 	public Vector3 middle;
 
 	// Use this for initialization
 	void SetCamPos() 
 	{
+        players = GameObject.Find("GameController").GetComponent<GameController>().players;
+        middle = Vector3.zero;
+        foreach(GameObject player in players)
+        {
+            middle += player.transform.position * weight(player.transform.position);
+        }
 
-        middle = (player1.transform.position * weight(player1.transform.position) + ((player2 != null) ?  player2.transform.position * weight(player2.transform.position) : Vector3.zero) + ((player3 != null) ? player3.transform.position * weight(player3.transform.position) : Vector3.zero) + ((player4 != null) ? player4.transform.position * weight(player4.transform.position) : Vector3.zero) + new Vector3(0f, 0f, 0f)) / 5f;
+        middle /= players.Count + 1;
 
 		transform.position = new Vector3(
 			middle.x,

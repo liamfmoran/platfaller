@@ -18,19 +18,19 @@ public class ScorekeeperBehavior : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GameObject.Find("player1").activeSelf)
+        if (GameObject.Find("player1") != null)
         {
             GUI.Label(new Rect(0, 0, 150, 25), "Player 1 Score: " + Score1);
         }
-        if (GameObject.Find("player2").activeSelf)
+        if (GameObject.Find("player2") != null)
         {
             GUI.Label(new Rect(0, 25, 150, 25), "Player 2 Score: " + Score2);
         }
-        if (GameObject.Find("player3").activeSelf)
+        if (GameObject.Find("player3") != null)
         {
             GUI.Label(new Rect(0, 50, 150, 25), "Player 3 Score: " + Score3);
         }
-        if (GameObject.Find("player4").activeSelf)
+        if (GameObject.Find("player4") != null)
         {
             GUI.Label(new Rect(0, 75, 150, 25), "Player 4 Score: " + Score4);
         }

@@ -10,28 +10,35 @@ public class ColorSelection : MonoBehaviour
 	public List<Color> colorsLeft = new List<Color>();
 	public Component[] tiles;
 	public GameObject screen;
-	//public Rigidbody rb;
+
 	float timeLeft = 5.0f;
+    float restTime = 7.0f;
 
 	void Start()
 	{
-		colors = new Color [3] {Color.blue, Color.gray, Color.white};
+		colors = new Color [4] {Color.blue, Color.gray, Color.white, Color.black};
 		colorsLeft.Add(Color.blue);
 		colorsLeft.Add(Color.gray);
 		colorsLeft.Add(Color.white);
+        colorsLeft.Add(Color.black);
 		createTiles();
 	}
 
-	void Update()
-	{
-
-         	timeLeft -= Time.deltaTime;
-         	if(timeLeft < 0)
-         	{
-			timeLeft = 15.0f;
-            		colorPicker();
-         	}
-     	}
+    void Update()
+    {
+        if (GameObject.Find("GameController").GetComponent<GameController>().gameStart) {
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                timeLeft = restTime;
+                colorPicker();
+            }
+            if (timeLeft >= restTime - 0.35f && timeLeft <= restTime - 0.25f)
+            {
+                fall();
+            }
+        }
+    }
 
 	void colorPicker()
 	{
@@ -41,10 +48,7 @@ public class ColorSelection : MonoBehaviour
 			colorsLeft.Remove(cc);
 			screen = GameObject.Find("Color Selector");
 			screen.GetComponent<Renderer>().material.color = cc;
-		}
-
-		fall();
-		
+		}		
 	}
 
 	void fall()
@@ -63,8 +67,8 @@ public class ColorSelection : MonoBehaviour
 				
 		foreach(Transform tile in GameObject.Find("Floor").transform)
 		{
-				Color randomColor = colors[(int)Random.Range(0, colors.Length)];
-				tile.GetComponent<Renderer>().material.color = randomColor;
+            Color randomColor = colors[(int) Random.Range(0, colors.Length)];
+            tile.GetComponent<Renderer>().material.color = randomColor;
 		}
 	}
 }
