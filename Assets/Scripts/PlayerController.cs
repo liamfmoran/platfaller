@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public string verticalControl = "Vertical_P1";
     public string jumpControl = "Jump_P1";
 
+    public AudioClip ac;
+
 
     void Start()
     {
@@ -23,6 +25,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
     }
+
+	
+    void PlaySound(int clip)
+    {
+	GetComponent<AudioSource>().clip = ac;
+	//GetComponent<AudioSource>().Play();
+    }
+
 
     void OnCollisionEnter(Collision collision)
     {

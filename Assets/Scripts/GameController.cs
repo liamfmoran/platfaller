@@ -22,16 +22,18 @@ public class GameController : MonoBehaviour {
     {
         if (!gameStart)
         {
-            if (Input.GetButtonDown("Submit"))
-            {
-                StartGame();
-            }
+            //if (Input.GetButtonDown("Submit"))
+            //{
+            //    StartGame();
+            //}
 
             if (player1 == null && (Input.GetButtonDown("Jump_P1") || Input.GetKeyDown(KeyCode.Space)))
             {
                 player1 = GameObject.Find("player1");
                 players.Add(player1);
                 Debug.Log("Player 1 created");
+		GameObject.Find("player1").GetComponent<AudioSource>().Play();
+		
             } else if (player2 == null && Input.GetButtonDown("Jump_P2"))
             {
                 player2 = (GameObject)Instantiate(player1, insert, Quaternion.identity);
@@ -40,6 +42,7 @@ public class GameController : MonoBehaviour {
                 player2.GetComponent<PlayerController>().jumpControl = "Jump_P2";
                 players.Add(player2);
                 Debug.Log("Player 2 created");
+		GameObject.Find("player1").GetComponent<AudioSource>().Play();
             }
 
             if (player3 == null && Input.GetButtonDown("Jump_P3"))
@@ -50,6 +53,7 @@ public class GameController : MonoBehaviour {
                 player3.GetComponent<PlayerController>().jumpControl = "Jump_P3";
                 players.Add(player3);
                 Debug.Log("Player 3 created");
+		GameObject.Find("player1").GetComponent<AudioSource>().Play();
             }
 
             if (player4 == null && Input.GetButtonDown("Jump_P4"))
@@ -60,32 +64,37 @@ public class GameController : MonoBehaviour {
                 player4.GetComponent<PlayerController>().jumpControl = "Jump_P4";
                 players.Add(player4);
                 Debug.Log("Player 4 created");
+		GameObject.Find("player1").GetComponent<AudioSource>().Play();
             }
         }
     }
 
-    void StartGame()
+    public void StartGame()
     {
         gameStart = true;
 
         if (player1 != null)
         {
             player1.transform.position = new Vector3(1f, 2.2f, 1f);
+	    GameObject.Find("player1").GetComponent<AudioSource>().Play();
         }
 
         if (player2 != null)
         {
             player2.transform.position = new Vector3(-1f, 2.2f, 1f);
+	    GameObject.Find("player1").GetComponent<AudioSource>().Play();
         }
 
         if (player3 != null)
         {
             player3.transform.position = new Vector3(1f, 2.2f, -1f);
+	    GameObject.Find("player1").GetComponent<AudioSource>().Play();
         }
 
         if (player4 != null)
         {
             player4.transform.position = new Vector3(-1f, 2.2f, -1f);
+	    GameObject.Find("player1").GetComponent<AudioSource>().Play();
         }
     }
 }

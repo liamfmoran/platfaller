@@ -12,21 +12,28 @@ public class ColorSelection : MonoBehaviour
 	public GameObject screen;
 
 	float timeLeft = 5.0f;
-    float restTime = 7.0f;
+    	float restTime = 7.0f;
+
+	private bool firstRun = true;
 
 	void Start()
 	{
-		colors = new Color [4] {Color.blue, Color.gray, Color.white, Color.black};
-		colorsLeft.Add(Color.blue);
-		colorsLeft.Add(Color.gray);
-		colorsLeft.Add(Color.white);
-        colorsLeft.Add(Color.black);
-		createTiles();
+			colors = new Color [4] {Color.blue, Color.gray, Color.white, Color.black};
+			colorsLeft.Add(Color.blue);
+			colorsLeft.Add(Color.gray);
+			colorsLeft.Add(Color.white);
+        		colorsLeft.Add(Color.black);	
+			//createTiles();
 	}
 
     void Update()
     {
         if (GameObject.Find("GameController").GetComponent<GameController>().gameStart) {
+	    if (firstRun)
+	    {
+		createTiles();
+		firstRun = false;
+	    }
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
