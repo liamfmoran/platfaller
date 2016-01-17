@@ -13,29 +13,55 @@ public class ColorSelection : MonoBehaviour
 
 	float timeLeft = 5.0f;
     float restTime = 7.0f;
+    float powerUpTime = 0f;
+
+    float powerUpFrequency = 5.0f;
 
 	void Start()
 	{
-		colors = new Color [4] {Color.blue, Color.gray, Color.white, Color.black};
+		colors = new Color [4] {Color.blue, Color.gray, Color.white, new Color(150,150,255)};
 		colorsLeft.Add(Color.blue);
 		colorsLeft.Add(Color.gray);
 		colorsLeft.Add(Color.white);
-        colorsLeft.Add(Color.black);
+        colorsLeft.Add(new Color(150, 150, 255));
 		createTiles();
 	}
 
     void Update()
     {
         if (GameObject.Find("GameController").GetComponent<GameController>().gameStart) {
+            powerUpTime += Time.deltaTime;
             timeLeft -= Time.deltaTime;
+
             if (timeLeft < 0)
             {
                 timeLeft = restTime;
                 colorPicker();
             }
-            if (timeLeft >= restTime - 0.35f && timeLeft <= restTime - 0.25f)
+
+            if (timeLeft >= restTime - 0.45f && timeLeft <= restTime - 0.35f)
             {
                 fall();
+            }
+
+            if (powerUpTime >= powerUpFrequency + Random.Range(-1f, 1f))
+            {
+                List<GameObject> tiles = new List<GameObject>();
+
+                foreach (Transform tile in GameObject.Find("Floor").transform)
+                {
+                    if (tile.GetComponent<Rigidbody>().isKinematic)
+                    {
+                        tiles.Add(tile.gameObject);
+                    }
+                }
+
+                if (tiles.Count > 1)
+                {
+                    Instantiate(GameObject.Find("PowerUp").GetComponent<PowerUp>().gameObject, tiles[(int)Random.Range(0, tiles.Count)].transform.position + new Vector3(0, 0.5f), new Quaternion());
+                }
+
+                powerUpTime = 0f;
             }
         }
     }

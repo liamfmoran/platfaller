@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,9 +13,14 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public bool alive;
 
+    public int powerCode;
+
+    public Color playerColor = Color.red;
+
     public string horizontalControl = "Horizontal_P1";
     public string verticalControl = "Vertical_P1";
     public string jumpControl = "Jump_P1";
+    public string powerControl = "Power_P1";
 
 
     void Start()
@@ -22,6 +28,7 @@ public class PlayerController : MonoBehaviour
         alive = true;
         rb = GetComponent<Rigidbody>();
 
+        powerCode = 0;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -56,6 +63,38 @@ public class PlayerController : MonoBehaviour
             movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         }
 
+        if (Input.GetButtonDown(powerControl) && powerCode == 1)
+        {
+            PowerForcePush();
+        }
+
+        switch (powerCode)
+        {
+            case 1:
+                gameObject.GetComponent<Renderer>().material.color = new Color(200,200,255);
+                break;
+        }
+
         rb.AddForce(movement * speed);
+    }
+
+    void PowerForcePush()
+    {
+        Vector3 position = gameObject.transform.position;
+        List<GameObject> players = GameObject.Find("GameController").GetComponent<GameController>().players;
+        foreach (GameObject player in players)
+        {
+            if (player != gameObject)
+            {
+                Vector3 forceVector = (player.transform.position - position).normalized;
+                Rigidbody rigidBody = player.GetComponent<Rigidbody>();
+                float distance = Vector3.Distance(position, player.transform.position);
+                if (distance < 8f) {
+                    rigidBody.AddForce(forceVector * 40 * (8f - distance));
+                }
+            }
+        }
+        gameObject.GetComponent<Renderer>().material.color = playerColor;
+        powerCode = 0;
     }
 }

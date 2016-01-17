@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour {
                 player2.GetComponent<PlayerController>().horizontalControl = "Horizontal_P2";
                 player2.GetComponent<PlayerController>().verticalControl = "Vertical_P2";
                 player2.GetComponent<PlayerController>().jumpControl = "Jump_P2";
+                player2.GetComponent<PlayerController>().powerControl = "Power_P2";
+                player2.GetComponent<PlayerController>().playerColor = Color.yellow;
                 players.Add(player2);
                 Debug.Log("Player 2 created");
             }
@@ -48,6 +50,8 @@ public class GameController : MonoBehaviour {
                 player3.GetComponent<PlayerController>().horizontalControl = "Horizontal_P3";
                 player3.GetComponent<PlayerController>().verticalControl = "Vertical_P3";
                 player3.GetComponent<PlayerController>().jumpControl = "Jump_P3";
+                player3.GetComponent<PlayerController>().powerControl = "Power_P3";
+                player3.GetComponent<PlayerController>().playerColor = Color.blue;
                 players.Add(player3);
                 Debug.Log("Player 3 created");
             }
@@ -58,6 +62,8 @@ public class GameController : MonoBehaviour {
                 player4.GetComponent<PlayerController>().horizontalControl = "Horizontal_P4";
                 player4.GetComponent<PlayerController>().verticalControl = "Vertical_P4";
                 player4.GetComponent<PlayerController>().jumpControl = "Jump_P4";
+                player4.GetComponent<PlayerController>().powerControl = "Power_P4";
+                player4.GetComponent<PlayerController>().playerColor = Color.green;
                 players.Add(player4);
                 Debug.Log("Player 4 created");
             }
