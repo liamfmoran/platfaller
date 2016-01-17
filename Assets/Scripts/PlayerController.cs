@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public string jumpControl = "Jump_P1";
     public string powerControl = "Power_P1";
 
+    public AudioClip ac;
 
     void Start()
     {
@@ -29,6 +30,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         powerCode = 0;
+    }
+
+    void PlaySound(int clip)
+    {
+        GetComponent<AudioSource>().clip = ac;
     }
 
     void OnCollisionEnter(Collision collision)

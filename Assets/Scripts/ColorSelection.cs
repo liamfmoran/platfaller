@@ -15,6 +15,8 @@ public class ColorSelection : MonoBehaviour
     float restTime = 7.0f;
     float powerUpTime = 0f;
 
+    private bool firstRun = true;
+
     float powerUpFrequency = 5.0f;
 
 	void Start()
@@ -24,12 +26,17 @@ public class ColorSelection : MonoBehaviour
 		colorsLeft.Add(Color.gray);
 		colorsLeft.Add(Color.white);
         colorsLeft.Add(new Color(150, 150, 255));
-		createTiles();
 	}
 
     void Update()
     {
         if (GameObject.Find("GameController").GetComponent<GameController>().gameStart) {
+            if (firstRun)
+            {
+                createTiles();
+                firstRun = false;
+            }
+
             powerUpTime += Time.deltaTime;
             timeLeft -= Time.deltaTime;
 
