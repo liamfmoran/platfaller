@@ -23,6 +23,10 @@ public class GameController : MonoBehaviour {
     {
         if (!gameStart)
         {
+            if (Input.GetButtonDown("Cancel"))
+            {
+                Application.Quit();
+            }
             if (Input.GetButtonDown("Submit"))
             {
                 StartGame();

@@ -50,21 +50,21 @@ public class ColorSelection : MonoBehaviour
             {
                 fall();
 
-                if (GameObject.Find("player1").GetComponent<PlayerController>().checkAlive() == true)
+                if (GameObject.Find("GameController").GetComponent<GameController>().player1.GetComponent<PlayerController>().checkAlive() == true)
                 {
-                    GameObject.Find("player1").GetComponent<PlayerController>().incrementScore();
+                    GameObject.Find("GameController").GetComponent<GameController>().player1.GetComponent<PlayerController>().incrementScore();
                 }
-                if (GameObject.Find("player2").GetComponent<PlayerController>().checkAlive() == true)
+                if (GameObject.Find("GameController").GetComponent<GameController>().player2.GetComponent<PlayerController>().checkAlive() == true)
                 {
-                    GameObject.Find("player2").GetComponent<PlayerController>().incrementScore();
+                    GameObject.Find("GameController").GetComponent<GameController>().player2.GetComponent<PlayerController>().incrementScore();
                 }
-                if (GameObject.Find("player3").GetComponent<PlayerController>().checkAlive() == true)
+                if (GameObject.Find("GameController").GetComponent<GameController>().player3.GetComponent<PlayerController>().checkAlive() == true)
                 {
-                    GameObject.Find("player3").GetComponent<PlayerController>().incrementScore();
+                    GameObject.Find("GameController").GetComponent<GameController>().player3.GetComponent<PlayerController>().incrementScore();
                 }
-                if (GameObject.Find("player4").GetComponent<PlayerController>().checkAlive() == true)
+                if (GameObject.Find("GameController").GetComponent<GameController>().player4.GetComponent<PlayerController>().checkAlive() == true)
                 {
-                    GameObject.Find("player4").GetComponent<PlayerController>().incrementScore();
+                    GameObject.Find("GameController").GetComponent<GameController>().player4.GetComponent<PlayerController>().incrementScore();
                 }
             }
 
