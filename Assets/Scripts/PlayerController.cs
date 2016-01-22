@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         switch (powerCode)
         {
             case 1:
-                gameObject.GetComponent<Renderer>().material.color = new Color(200,200,255);
+                gameObject.GetComponent<Renderer>().material.color = Color.black; // new Color (200,200,255)
                 break;
         }
 

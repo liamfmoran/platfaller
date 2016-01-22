@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour {
                 player2.GetComponent<PlayerController>().jumpControl = "Jump_P2";
                 player2.GetComponent<PlayerController>().powerControl = "Power_P2";
                 player2.GetComponent<PlayerController>().playerColor = Color.yellow;
+                player2.GetComponent<Renderer>().material.color = Color.yellow;
                 players.Add(player2);
                 GameObject.Find("player1").GetComponent<AudioSource>().Play();
                 Debug.Log("Player 2 created");
@@ -59,6 +60,7 @@ public class GameController : MonoBehaviour {
                 player3.GetComponent<PlayerController>().jumpControl = "Jump_P3";
                 player3.GetComponent<PlayerController>().powerControl = "Power_P3";
                 player3.GetComponent<PlayerController>().playerColor = Color.blue;
+                player3.GetComponent<Renderer>().material.color = Color.blue;
                 players.Add(player3);
                 GameObject.Find("player1").GetComponent<AudioSource>().Play();
                 Debug.Log("Player 3 created");
@@ -72,6 +74,7 @@ public class GameController : MonoBehaviour {
                 player4.GetComponent<PlayerController>().jumpControl = "Jump_P4";
                 player4.GetComponent<PlayerController>().powerControl = "Power_P4";
                 player4.GetComponent<PlayerController>().playerColor = Color.green;
+                player4.GetComponent<Renderer>().material.color = Color.green;
                 players.Add(player4);
                 GameObject.Find("player1").GetComponent<AudioSource>().Play();
                 Debug.Log("Player 4 created");

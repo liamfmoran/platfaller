@@ -23,9 +23,9 @@ public class ScorekeeperBehavior : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 150, 25), "Player 1 Score: " + Score1);
-        GUI.Label(new Rect(0, 25, 150, 25), "Player 2 Score: " + Score2);
-        GUI.Label(new Rect(0, 50, 150, 25), "Player 3 Score: " + Score3);
-        GUI.Label(new Rect(0, 75, 150, 25), "Player 4 Score: " + Score4);
+        GUI.Label(new Rect(0, 0, 150, 25), "Red -\tScore: " + Score1);
+        GUI.Label(new Rect(0, 25, 150, 25), "Yellow -\tScore: " + Score2);
+        GUI.Label(new Rect(0, 50, 150, 25), "Blue -\tScore: " + Score3);
+        GUI.Label(new Rect(0, 75, 150, 25), "Green -\tScore: " + Score4);
     }
 }
