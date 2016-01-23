@@ -46,7 +46,7 @@ public class ColorSelection : MonoBehaviour
                 colorPicker();
             }
 
-            if (timeLeft >= restTime - 0.45f && timeLeft <= restTime - 0.35f)
+            if (timeLeft >= restTime - 1.45f && timeLeft <= restTime - 1.35f)
             {
                 fall();
 
@@ -66,7 +66,7 @@ public class ColorSelection : MonoBehaviour
                 {
                     GameObject.Find("GameController").GetComponent<GameController>().player4.GetComponent<PlayerController>().incrementScore();
                 }
-            }
+        }
 
             if (powerUpTime >= powerUpFrequency + Random.Range(-1f, 1f))
             {
@@ -106,8 +106,9 @@ public class ColorSelection : MonoBehaviour
 		foreach(Transform tile in GameObject.Find("Floor").transform)
 		{
 			if (screen.GetComponent<Renderer>().material.color == tile.GetComponent<Renderer>().material.color)
-			{			
-				tile.GetComponent<Rigidbody>().isKinematic = false;
+			{
+                tile.GetComponent<Rigidbody>().isKinematic = false;
+                tile.GetComponent<Rigidbody>().detectCollisions = false;
 			}
 		}
 	}

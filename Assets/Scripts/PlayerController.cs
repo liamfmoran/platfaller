@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         alive = true;
         rb = GetComponent<Rigidbody>();
+        Physics.gravity = new Vector3(0, -50, 0);
+
 
         powerCode = 0;
     }
@@ -71,6 +73,8 @@ public class PlayerController : MonoBehaviour
             movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         }
 
+        rb.AddForce(5 * movement * speed);
+
         if (Input.GetButtonDown(powerControl) && powerCode == 1)
         {
             PowerForcePush();
@@ -82,8 +86,6 @@ public class PlayerController : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = new Color(200,200,255);
                 break;
         }
-
-        rb.AddForce(movement * speed);
 
         if (transform.position.y < -0.5)
         {
